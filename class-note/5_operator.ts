@@ -34,10 +34,24 @@ logMessage(value);
 
 interface Developter {
     name: string;
-    age: number;
+    skill: string;
 }
 
-interface Person {
+interface People {
     name: string;
     age: number;
 }
+
+function askSomeone(someone: Developter | People) {
+    // someone.name;
+}
+
+askSomeone({name: '디벨로퍼', skill: '웹 개발'});
+askSomeone({name: '와빵', age: 30});
+
+
+function askAnyone(anyone: Developter & Person) {
+
+}
+
+askAnyone({name: '디벨로퍼', skill: '웹개발', age:1})
