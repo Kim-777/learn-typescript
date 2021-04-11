@@ -1,3 +1,5 @@
+'use strict';
+
 // api url
 var url = 'https://jsonplaceholder.typicode.com/users/1';
 
@@ -16,7 +18,7 @@ var user = {};
  */
 
 /**
- * @typedef {object} User
+ * @typedef {object} User1
  * @property {string} name
  * @property {string} email
  * @property {Address} Address
