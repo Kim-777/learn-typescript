@@ -170,3 +170,70 @@ function identity<T>(arg: T): T {
 }
 
 let myIdentity: GenericIdentityFn = identity;
+
+// Generic Classes
+
+// class GenericNumber<T> {
+//   zeroValue: T;
+//   add: (x: T, y: T) => T;
+// }
+
+// let myGenericNumber = new GenericNumber<number>();
+// myGenericNumber.zeroValue = 0;
+// myGenericNumber.add = function (x, y) {
+//   return x + y;
+// };
+
+// Intersection Types
+// function extend<First extends {}, Second extends {}>(
+//   first: First,
+//   second: Second
+// ): First & Second {
+//   const result: Partial<First & Second> = {};
+//   for (const prop in first) {
+//     if (first.hasOwnProperty(prop)) {
+//       (result as First)[prop] = first[prop];
+//     }
+//   }
+
+//   for (const prop in second) {
+//     if (second.hasOwnProperty(prop)) {
+//       (result as Second)[prop] = second[prop];
+//     }
+//   }
+
+//   return result as First & Second;
+// }
+
+// class Person2 {
+//   constructor(public name: string) {}
+// }
+
+// interface Loggable {
+//   log(name: string): void;
+// }
+
+// class ConsoleLogger implements Loggable {
+//   log(name: string) {
+//     console.log(`Hello, I'm ${name}`);
+//   }
+// }
+
+// const jim = extend(new Person2("Jim"), ConsoleLogger.prototype);
+// jim.log(jim.name);
+
+// 유니언 타입 (Union Types)
+function padLeft(value: string, padding: string | number) {
+  if (typeof padding === "number") {
+    return Array(padding + 1).join(" ") + value;
+  }
+
+  if (typeof padding === "string") {
+    return padding + value;
+  }
+
+  throw new Error(`Expected string or number, got '${padding}'.`);
+}
+
+const paded = padLeft("hello world", 4);
+console.log(paded);
