@@ -303,3 +303,54 @@ function padLeft(value: string, padding: string | number) {
 
 const paded = padLeft("hello world", 4);
 console.log(paded);
+
+// 판별 유니언 (Discriminated Unions)
+interface Square {
+  kind: "square";
+  size: number;
+}
+
+interface Rectangle {
+  kind: "rectangle";
+  width: number;
+  height: number;
+}
+
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+type Shape = Square | Rectangle | Circle;
+
+function area(s: Shape) {
+  switch (s.kind) {
+    case "square":
+      return s.size * s.size;
+    case "rectangle":
+      return s.height * s.height;
+    case "circle":
+      return Math.PI * s.radius ** 2;
+  }
+}
+
+// 다형성 this 타입 (Polymorphic this types)
+class BasicCalculator {
+  public constructor(protected value: number = 0) {}
+
+  public currentValue(): number {
+    return this.value;
+  }
+
+  public add(operand: number): this {
+    this.value += operand;
+    return this;
+  }
+
+  public multiply(operand: number): this {
+    this.value *= operand;
+    return this;
+  }
+}
+
+let calced = new BasicCalculator(2).multiply(5).add(3).currentValue();
