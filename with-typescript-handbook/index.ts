@@ -89,9 +89,41 @@ enum Color {
 
 let c: Color = Color.Green;
 
-console.log("c ::: ", c);
+enum Direction {
+  Up = 1,
+  Down,
+  Left,
+  Right,
+}
 
 // 리터럴 타입 좁히기 (Literal Narrowing)
+
+// 교차 타입
+interface ErrorHandler {
+  success: boolean;
+  error?: { message: string };
+}
+
+interface ArtworkDate {
+  artworks: { title: string }[];
+}
+
+interface ArtistsData {
+  artists: { name: string }[];
+}
+
+// 위의 인터페이스들을 교차 타입을 통해 하나의 에러 핸들링과 자체 데이터로 구성됩니다.
+type ArtworksResponse = ArtworkDate & ErrorHandler;
+type ArtistsResponse = ArtistsData & ErrorHandler;
+
+// 아래의 함수의 반환값은 tsc가 추론해줍니다!
+const handleArtistsResponse = (response: ArtistsResponse) => {
+  if (response.error) {
+    console.error(response.error.message);
+    return;
+  }
+  console.log(response.artists);
+};
 
 // Class
 class Greeter {
